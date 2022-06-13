@@ -1,3 +1,5 @@
+% the variable behavior stores information on grip strength, covariates, and 30 mental health outcomes
+
 %excluding non-White
 white_index=find(~isnan(behavior(:,7))==0);
 behavior(white_index,7)=behavior(white_index,8);
@@ -36,9 +38,6 @@ behavior(not_completed,30)=NaN;
 behavior(:,29)=log(behavior(:,29));
 behavior(:,30)=log(behavior(:,30));
 clear not_completed;
-% pairs associated memory ?
-%behavior(:,36)=behavior(:,36).^2;
-% pairs matching,poission
 
 %
 index_not_completed=find(behavior(:,40)==0);
@@ -46,7 +45,7 @@ behavior(index_not_completed,40)=NaN;
 behavior(:,40)=log(behavior(:,40));
 index_not_completed=find(behavior(:,41)==0);
 behavior(index_not_completed,41)=NaN;
-behavior(:,41)=log(behavior(:,41));%still positive skewness
+behavior(:,41)=log(behavior(:,41));
 index_not_completed=find(behavior(:,42)==0);
 behavior(index_not_completed,42)=NaN;
 behavior(:,42)=log(behavior(:,42));
@@ -72,7 +71,7 @@ index=find(behavior(:,122)<0);
 behavior(index,122)=NaN;
 index=find(behavior(:,123)<0);
 behavior(index,123)=NaN;
-
+% ecluding outliers
 index=find(behavior(:,131)<0|behavior(:,131)>6);%job satisfication
 behavior(index,131)=NaN;
 
@@ -126,12 +125,12 @@ behavior(:,23)=behavior(:,23)./behavior(:,24);
 %deprivation
 behavior(:,6)=log(behavior(:,6)-min(behavior(:,6))+1);
 
-covariate_variable=behavior(:,[3,4,5,6,11,22,23,137]);
+covariate_variable=behavior(:,[3,4,5,6,11,22,23,137]); %age, gender,imaging site, deprivation score, education, BMI, WHR, height
 cognition_index=[25,26,27,28,29,30,31,32,33,35,36,37,38,39,40,41,42,108,111,112,117,118,119,120,121,122,123,131,132,139]';
 cognition=behavior(:,cognition_index);
 
 
-%% cognition and strength
+%% association between 30 mental health outcomes and grip strength
 for i=1:30
     a=[strength,cognition(:,i),covariate_variable];
     noNaN_index=find(~isnan(sum(a,2)));
@@ -155,7 +154,7 @@ for i=1:30
 end
 clear i;
 
-%% 0, 1, do not zscore the cognition
+%% 0, 1
 a=[strength,cognition(:,2),covariate_variable];
 noNaN_index=find(~isnan(sum(a,2)));
 a=a(noNaN_index,:);

@@ -18,12 +18,12 @@ ggdotchart(result, x = 'cognition_name', y = 'values',
            #palette = c("#00AFBB", "#E7B800", "#FC4E07",'darkgreen'),
            sorting = "descending", 
            #order=result$cognition_name[behavior_order],
-           add = "segments",                             # ????????????
-           add.params = list(color = "grey", size = 2.5),#??????????????????
+           add = "segments",                            
+           add.params = list(color = "grey", size = 2.5),
            rotate = TRUE,                                
-           dot.size = 4.7,                                 # ??????????????????
-           label = round(result$values,1),                       # ??????label
-           font.label = list(color = "white", size = 6.8, vjust = 0.5),               # ??????label??????
+           dot.size = 4.7,                                
+           label = round(result$values,1),                     
+           font.label = list(color = "white", size = 6.8, vjust = 0.5),        
            ggtheme = theme_test(),                        # ????????????
            ylab="-log(p-value)",xlab=""
 )
@@ -68,11 +68,11 @@ ggdotchart(result, x = 'roi_name', y = 't_value',
            color = 'category', # ????????????
            palette = c("#E7B800", "#E7B800", "#E7B800"),
            sorting = "descending",                  
-           add = "segments",                             # ????????????
-           add.params = list(size = 0.5),#??????????????????
+           add = "segments",                           
+           add.params = list(size = 0.5),
            #rotate = TRUE,                                
-           dot.size = 1.0,                                 # ??????????????????
-           ggtheme = theme_test(),                        # ????????????
+           dot.size = 1.0,                              
+           ggtheme = theme_test(),                     
            ylab="T-values",xlab=""
 )+rotate_x_text(45)
 
@@ -87,11 +87,11 @@ ggdotchart(result, x = 'roi_name', y = 't_value',
            color = 'category', # ????????????
            palette = c("#E7B800", "#E7B800", "#E7B800"),
            sorting = "descending",                  
-           add = "segments",                             # ????????????
-           add.params = list(size = 0.5),#??????????????????
+           add = "segments",                            
+           add.params = list(size = 0.5),
            #rotate = TRUE,                                
-           dot.size = 1.2,                                 # ??????????????????
-           ggtheme = theme_test(),                        # ????????????
+           dot.size = 1.2,                                
+           ggtheme = theme_test(),      
            ylab="T-values",xlab=""
 )
 
@@ -167,13 +167,13 @@ scale_fill_viridis_c(option="trubo")
 
 ggdotchart(result, x = 'cognition', y = 't_correlation',
            sorting = "ascending",                  
-           add = "segments",                             # ????????????
-           add.params = list(color = "grey", size = 3.5),#??????????????????
+           add = "segments",
+           add.params = list(color = "grey", size = 3.5),
            rotate = TRUE,                                
-           dot.size = 5.5,                                 # ??????????????????
-           label = round(result$t_correlation,2),                       # ??????label
-           font.label = list(color = "white", size = 7.2, vjust = 0.5),               # ??????label??????
-           ggtheme = theme_test(),                        # ????????????
+           dot.size = 5.5,
+           label = round(result$t_correlation,2),
+           font.label = list(color = "white", size = 7.2, vjust = 0.5),
+           ggtheme = theme_test(),
            ylab="T-map correlation",xlab="")
 
 

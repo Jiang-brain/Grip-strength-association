@@ -1,3 +1,5 @@
+% the variable behavior stores information on grip strength, covariates, and 30 mental health outcomes
+
 %white
 white_index=find(~isnan(behavior(:,7))==0);
 behavior(white_index,7)=behavior(white_index,8);
@@ -116,14 +118,11 @@ for i=1:size(features1,2)-1
     
     tbl = table(zscore(temp_features),zscore(strength),grey_matter,temp_covariate(:,1),temp_covariate(:,2),temp_covariate(:,4),temp_covariate(:,5),temp_covariate(:,6),temp_covariate(:,7),temp_covariate(:,8),temp_covariate(:,3),...
         'VariableNames',{'Gm','Strength','Total_gm','Age','gender','deprivation','education','bmi','whr','height','site'});
-%    tbl = table(zscore(temp_features),zscore(strength),temp_covariate(:,1),temp_covariate(:,2),temp_covariate(:,4),temp_covariate(:,5),temp_covariate(:,6),temp_covariate(:,7),temp_covariate(:,3),...
-%        'VariableNames',{'Gm','Strength','Age','gender','deprivation','education','bmi','whr','site'});
     tbl.education = categorical(tbl.education);
     tbl.gender = categorical(tbl.gender);
     tbl.site = categorical(tbl.site);
     lme = fitlme(tbl,'Gm~Strength+Total_gm+Age+gender+deprivation+education+bmi+whr+height+(Strength|site)');
-%    lme = fitlme(tbl,'Gm~Strength+Age+gender+deprivation+education+bmi+whr+(Strength|site)');
-%    b=lme.fixedEffects;
+
     result(i,1)=lme.Coefficients.Estimate(2);
     result(i,2)=lme.Coefficients.pValue(2);
     result(i,3)=lme.Coefficients.SE(2);
